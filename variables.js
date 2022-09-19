@@ -17,6 +17,7 @@ let e = false;      //boolean
 let f = null;       //NULL
 
 let g;              //undefined (값 할당되지 않은 상태)
+console.log("g의 자료형 : " + typeof g);
 
 let h = [1, 2, 3];  //Array         Array()
 
