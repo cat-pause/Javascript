@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자바스크립트</title>
+    <title>제이쿼리</title>
     <style>
         #displayArea{
             width:200px;
             height:200px;
             border: 5px double #6699ff;
-            /*
-            box-sizing: border-box;
-            */
+            
         }
         button{
             width:200px;
@@ -27,12 +25,21 @@
     <div id="displayArea">이곳의 내용 변경</div>
     <button type="button">click</button>
 
+    <script src="lib/jquery-3.6.1.js"></script>
     <script>
-        // 'click' 누르면 #displayArea에 이미지 출력
-        const Button = document.querySelector("button");
-        Button.addEventListener("click", function(){
-            const DA = document.querySelector("#displayArea");
-            DA.innerHTML = "<img src=\"https://picsum.photos//200\" alt=\"그림\">";
+        // 1. 기본형식
+        /*
+        $(document).ready(function(){
+            //표현식 --> p.469
+        })
+        */
+        // 2. 단축형식
+        $(function(){
+            //'click' 버튼 누르면 #displayArea에 이미지 출력
+            $('button').click(function(){
+                $('#displayArea')
+                .html("<img src=\"https://picsum.photos/200\" alt=\"그림\">")
+            })
         })
     </script>
 </body>
