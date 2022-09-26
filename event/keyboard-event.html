@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키보드 이벤트</title>
+    <script src="lib/jquery-3.6.1.js"></script>
+    <style>
+        *{margin:0; padding:0;}
+        .area1{
+            position:relative;
+            width:100vw;
+            height:500px;
+            background-color:black;
+            
+        }
+        #bug{
+            position:absolute;
+            width:50px;
+            height:50px;
+            /*
+            top:calc(100% - 50px);
+            left:calc(50% - 25px);
+            */
+        }
+        #p1{
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>jquery를 사용한 키보드 이벤트(p.484)</h1>
+    <p id="p1">시작</p>
+    <div class="area1">
+        <img src="plane.png" alt="갤러그" id="bug">
+    </div>
+
+    <script>
+
+        $(function(){
+            const bug = $("#bug");
+            window.addEventListener("keydown", keysPressed, false);
+            window.addEventListener("keyup", keysReleased, false);
+            var keys = [];
+            function keysPressed(e) {
+                keys[e.keyCode] = true;
+                
+                // Ctrl + Space
+                if (keys[39] && keys[38]) {
+                    console.log("오른쪽 + 위");
+                    bug.css("right", "-=20");
+                    bug.css("top", "-=20");
+                    e.preventDefault();	 // prevent default browser behavior
+                }else if(keys[37] && keys[38]) {
+                    console.log("왼쪽 + 위");
+                    bug.css("right", "+=20");
+                    bug.css("top", "-=20");
+                    e.preventDefault();
+                }else if(keys[39] && keys[40]) {
+                    console.log("오른쪽 + 아래");
+                    bug.css("right", "+=20");
+                    bug.css("top", "+=20");
+                    e.preventDefault();
+                }else if(keys[37] && keys[40]) {
+                    console.log("왼쪽 + 아래");
+                    bug.css("right", "-=20");
+                    bug.css("top", "+=20");
+                    e.preventDefault();
+                }
+            }
+            function keysReleased(e) {
+                keys[e.keyCode] = false;
+            }
+            /*
+            $(window).keydown(function(e){
+                $("#p1").css("display", "block");
+                if( e.keyCode == 39){
+                    console.log("오른쪽 이동");
+                    bug.css("right", "-=20")
+                }else if( e.keyCode == 37){
+                    console.log("왼쪽 이동");
+                    bug.css("right", "+=20")
+                }else if( e.keyCode == 40){
+                    console.log("아래 이동");
+                    bug.css("top", "+=20")
+                }else if( e.keyCode == 38){
+                    console.log("위 이동");
+                    bug.css("top", "-=20")
+                }
+            })
+            */
+        })
+    </script>
+</body>
+</html>
