@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jquery</title>
-    <script src="lib/jquery-3.6.1.js"></script>
+    <script src="../lib/jquery-3.6.1.js"></script>
     <style>
         #submit{
             width:150px;
@@ -49,25 +49,38 @@
         // })
 
         $(function(){
+
+            //change 이벤트 : 폼 엘리먼트가 변경될때 발생(ex.검색창에 검색어 입력)
+            $("#idx").change(function(e){
+                console.dir("입력값 : "+e.target.value)
+            })
+            $("#name").keypress(function(e){
+                let inputValue = e.target.value;
+                if(inputValue.length > 10){
+                    alert("그만")
+                }
+                console.log("사용자 입력값 : " + e.target.value)
+            })
+
             //전송시 form 새로고침 : default → forbidden
             //사용자 정보 객체 => 서버로 전송할 데이터!
-            const userInfo={};
-            $("#my-form").submit(function(e){
-                e.preventDefault(); //form 전송시 새로고침 이벤트 처리 취소
-                userInfo.id = $("#idx").val();
-                userInfo.name = $("#name").val();
-                $("#idx").val("");
-                $("#name").val(null);
-                //$.ajax();
-            })
-            $("input").focus(function(){
-                $(this).css("background-color", "#ccc");
-                console.log("focus 발생");
-            })
-            $("input").blur(function(){
-                $(this).css("background-color", "#fff");
-                console.log("blur 발생");
-            })
+            // const userInfo={};
+            // $("#my-form").submit(function(e){
+            //     e.preventDefault(); //form 전송시 새로고침 이벤트 처리 취소
+            //     userInfo.id = $("#idx").val();
+            //     userInfo.name = $("#name").val();
+            //     $("#idx").val("");
+            //     $("#name").val(null);
+            //     //$.ajax();
+            // })
+            // $("input").focus(function(){
+            //     $(this).css("background-color", "#ccc");
+            //     console.log("focus 발생");
+            // })
+            // $("input").blur(function(){
+            //     $(this).css("background-color", "#fff");
+            //     console.log("blur 발생");
+            // })
         })
     </script>
 </body>
