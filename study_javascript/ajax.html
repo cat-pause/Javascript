@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제이쿼리 ajax(p.491)</title>
+    <style>
+        button{
+            width:200px;
+            line-height: 40px;
+            cursor: pointer;
+
+        }
+    </style>
+    <script src="../lib/jquery-3.6.1.js"></script>
 </head>
 <body>
     <h1>jquery Ajax(Asynchronous javascript and XML</h1>
@@ -42,5 +51,28 @@
         <input type="text" id="keyword" name="keyword">
     </form>
 
+    <h5>.load() 예제</h5>
+    <button id="pro">요청</button>
+    <div id="result"></div>
+
+    //Type : xhr
+
+    <script>
+        $(function(){
+            //엘리먼트.load(url [,data] [,complete(responseText, textStatus, XMLTtpRequest)] )
+            //요청 버튼 클릭하면, #result에 text, html, csv, xml, json, [DB연동] 등의 데이터 호출
+            $("#pro").click(function(){
+                $("#result").load("../data/dataset.xml", function(responseText, textStatus, XMLTtpRequest){
+                    //alert("데이터 전송이 완료되었습니다.")
+                    console.log(XMLTtpRequest);
+                    // if(textStatus == "success"){
+                    //     alert("데이터 전송 완료")
+                    // }else{
+                    //     alert("통신 실패!")
+                    // }
+                });
+            })
+        })
+    </script>
 </body>
 </html>
